@@ -5,13 +5,13 @@ from user.models import UserModel
 # Create your models here.
 class ProductModel(models.Model):
     class Meta:
-        db_table = "product_db"
+        db_table = "product_data"
 
     """
     상품 모델입니다.
     상품 코드, 상품 이름, 상품 설명, 상품 가격, 사이즈 필드를 가집니다.
     """
-    code = None
+    code = models.AutoField(primary_key=True)  # 자동으로 번호를 부여하는 필드
     name = models.CharField(max_length=150)
     user = models.ForeignKey(
         UserModel, on_delete=models.RESTRICT, null=True, blank=True)

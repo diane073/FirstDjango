@@ -6,4 +6,4 @@ from django.contrib.auth.models import AbstractUser
 
 class UserModel(AbstractUser):
     class Meta:
-        db_table = "user_db"
+        db_table = "user_data"
