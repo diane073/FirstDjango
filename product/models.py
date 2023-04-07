@@ -24,6 +24,8 @@ class ProductModel(models.Model):
         ('F', 'Free'),
     )
     size = models.CharField(choices=sizes, max_length=1)
+    stock = models.IntegerField(default=0)
+
     """
     choices 매개변수는 Django 모델 필드에서 사용하는 매개변수 중 하나로 
     해당 필드에서 선택 가능한 옵션을 지정하는 역할을 합니다. 
@@ -31,9 +33,16 @@ class ProductModel(models.Model):
     두번째 요소는 사용자가 볼 수 있는 레이블(옵션의 이름)이 됩니다.
     """
 
-    def __str__(self):
-        return self.code
+    def __str__(self):  # 문자열 반환해야하는데 튜플형태로 반환함
+        return self.name
 
-    def save(self, *args, **kwargs):
-        # 생성될 때 stock quantity를 0으로 초기화 로직
-        pass
+
+class Inbound(models.Model):
+    """
+    입고 모델입니다.
+    상품, 수량, 입고 날짜, 금액 필드를 작성합니다.
+    """
+    pass
+
+    # def save(self, *args, **kwargs):
+    #     pass

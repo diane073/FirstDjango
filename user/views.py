@@ -48,7 +48,7 @@ def signin(request):
     elif request.method == 'GET':
         user = request.user.is_authenticated
         if user:  # 로그인이 되어 있다면
-            return HttpResponse("로그인에 성공했습니다!")
+            return render(request, 'home.html')
         else:  # 로그인이 되어 있지 않다면
             return render(request, 'user/signin.html')
 
