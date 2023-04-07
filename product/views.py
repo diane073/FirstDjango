@@ -51,3 +51,25 @@ def inbound_create(request):
 
     # 입고 수량 조정
     pass
+
+
+@login_required
+def outbound_create(request, product_id):
+    # 상품 출고 view
+    # 출고 기록 생성
+
+    # 재고 수량 조정
+    pass
+
+
+# view
+@login_required
+def inventory(request):
+    """
+    inbound_create, outbound_create view에서 만들어진 데이터를 합산합니다.
+    Django ORM을 통하여 총 수량, 가격등을 계산할 수 있습니다.
+    """
+    # 총 입고 수량, 가격 계산
+
+    # 총 출고 수량, 가격 계산
+    pass
