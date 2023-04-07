@@ -1,0 +1,49 @@
+{% block content %}
+<div class="container timeline-container">
+    <div class="row">
+        <!-- 왼쪽 컬럼 -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.username }}</h5>
+                    <p class="card-text"> {{ user.bio }} </p>
+
+                </div>
+            </div>
+        </div>
+        <!-- 오른 쪽 컬럼-->
+        <div class="col-md-7">
+            <!-- 작성 된 글이 나오는 곳 -->
+            <div class="row">
+                {% for pd in product %}
+                <div class="col-md-12 mb-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <div style="text-align: right">
+                                <a href="{{/products/pd.id }}">
+                                    <span class="badge rounded-pill bg-danger">상품 보기</span>
+                                </a>
+                            </div>
+                            <div style="text-align: right">
+                                <a href="#">
+                                    <span class="badge rounded-pill bg-success">장바구니</span>
+                                </a>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h5 class="mt-0">{{ pd.content }}</h5>
+                                </div>
+                                <div style="text-align: right">
+                                    <span style="font-size: small">{{ pd.productname }}-{{ pd.price }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock %}

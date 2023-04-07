@@ -7,4 +7,4 @@ admin.site.register(ProductModel)
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('code', 'name', 'size', 'price')
+    list_display = ('code', 'name', 'size', 'crearted_at')
