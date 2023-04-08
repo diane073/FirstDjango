@@ -7,9 +7,6 @@ from .form import ProductForm
 from django.views.decorators.csrf import csrf_exempt
 
 
-# Create your views here.
-
-
 @login_required
 @csrf_exempt
 def product_register(request):
@@ -23,19 +20,18 @@ def product_register(request):
     elif request.method == 'POST':
         # 상품을 등록하는 POST요청
         # 자료를 등록해준다.
-        product_form = ProductForm(request.POST)
-        print('------------')
 
-        print(product_form.instance.name)
-        print(ProductModel.objects.filter(
-            name=product_form.instance.name))
-        if ProductModel.objects.filter(name=product_form.instance.name).exists():
-            return HttpResponse("같은 이름의 상품이 존재합니다. 다시 등록해주세요")
+        product_form = ProductForm(request.POST)
+        name = request.POST.get('name')
+        if ProductModel.objects.filter(name=name).exists():
+            message = "같은 이름의 상품이 존재합니다. 다시 등록해주세요"
+            return render(request, 'product/product_register.html', {'form': product_form, 'error_message': message})
         elif product_form.is_valid():
             product_form.save()
             return redirect('/product_list')
         else:
-            return render(request, 'product/product_register.html', {'form': product_form})
+            message = "유효하지 않은 값입니다. 다시 등록해야되지롱"
+            return render(request, 'product/product_register.html', {'form': product_form, 'error_message': message})
 
 
 @login_required

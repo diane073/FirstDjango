@@ -10,6 +10,9 @@
         <form action="/product_register/" , method="post">
             {%csrf_token%}
             <div>
+                {{ error_message }}
+            </div>
+            <div>
                 {{ form }}
             </div>
             <input type="submit" value="상품 등록하기">
