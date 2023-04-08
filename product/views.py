@@ -12,7 +12,7 @@ def product_create(request):
     # 상품 등록 view
     if request.method == 'GET':
         # 상품이 추가된 페이지가 떠야함.
-        return render(request, '/products')
+        return render(request, '/')
         # 여기에 추가한 페이지를 render 해 줄 수 있도록하기
 
     elif request.method == 'POST':
@@ -30,13 +30,13 @@ def product_create(request):
             return HttpResponse("같은 이름의 상품이 존재합니다. 다시 등록해주세요")
         else:
             product.save()
-            return redirect('/product')
+            return redirect('/products_list')
 
 
 @login_required
 def product_list(request):
     # 등록 된 상품의 리스트를 볼 수 있는 GET(사용자가 보는,)
-    if request.method == '/product':
+    if request.method == '/products_list':
         all_product = ProductModel.objects.all()
         return render(request, 'home.html', {'products': all_product})
     else:

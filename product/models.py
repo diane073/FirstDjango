@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from user.models import UserModel
 from django.core.validators import MinValueValidator
@@ -28,6 +29,8 @@ class ProductModel(models.Model):
     )
     size = models.CharField(choices=sizes, max_length=1)
     stock = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    created_at = models.DateTimeField(
+        default=timezone.now, verbose_name='created at')
 
     """
     choices 매개변수는 Django 모델 필드에서 사용하는 매개변수 중 하나로
@@ -38,6 +41,18 @@ class ProductModel(models.Model):
 
     def __str__(self):  # 문자열 반환해야하는데 튜플형태로 반환함
         return self.name
+
+    def save(self):
+        raise NotImplementedError('Not Implemented')
+
+
+class Invetory(models.Model):
+    """
+    창고의 제품과 수량 정보를 담는 모델입니다.
+    상품, 수량 필드를 작성합니다.
+    작성한 Product 모델을 OneToOne 관계로 작성합시다.
+    """
+    pass
 
 
 class Inbound(models.Model):
@@ -54,18 +69,5 @@ class Outbound(models.Model):
     """
     출고 모델입니다.
     상품, 수량, 입고 날짜, 금액 필드를 작성합니다.
-    """
-    pass
-
-    # def save(self, *args, **kwargs):
-    #     pass
-
-
-# model
-class Invetory(models.Model):
-    """
-    창고의 제품과 수량 정보를 담는 모델입니다.
-    상품, 수량 필드를 작성합니다.
-    작성한 Product 모델을 OneToOne 관계로 작성합시다.
     """
     pass

@@ -28,7 +28,13 @@
                                     <form action="/products_create/" method="post">
                                         {% csrf_token %}
                                         <div class="form-group mb-2">
-                                            <textarea class="form-control" style="resize: none" name='my-content'
+                                            <textarea class="form-control" style="resize: none" name='name'
+                                                id="my-content"></textarea>
+                                            <textarea class="form-control" style="resize: none" name='description'
+                                                id="my-content"></textarea>
+                                            <textarea class="form-control" style="resize: none" name='price'
+                                                id="my-content"></textarea>
+                                            <textarea class="form-control" style="resize: none" name='size'
                                                 id="my-content"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary" style="float:right;">등록하기</button>
