@@ -40,15 +40,18 @@ def signin(request):
 
         call_user = auth.authenticate(
             request, username=username, password=password)
+        print(call_user)
 
-        if call_user is not None:
-            auth.login(request, call_user)
-            return HttpResponse("로그인에 성공했습니다!")
+        if call_user is None:
+            return HttpResponse("잘못된 로그인 요청이지롱")
+
+        auth.login(request, call_user)
+        return redirect("/product_list")
 
     elif request.method == 'GET':
         user = request.user.is_authenticated
         if user:  # 로그인이 되어 있다면
-            return render(request, 'home.html')
+            return redirect('/product_list')
         else:  # 로그인이 되어 있지 않다면
             return render(request, 'user/signin.html')
 
